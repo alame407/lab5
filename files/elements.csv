@@ -1,0 +1,2 @@
+key,id,name,Coordinates x,Coordinates y,creationDate,studentsCount,expelledStudents,formOfEducation,semesterEnum,groupAdmin name,groupAdmin birthday,groupAdmin eyeColor,groupAdmin hairColor,groupAdmin nationality
+1,427554246,2,2,2.0,2023-03-03,2,5,DISTANCE_EDUCATION,FIRST,name,2023-03-03,RED,GREEN,VATICAN

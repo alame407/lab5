@@ -1,0 +1,5 @@
+key,id,name,Coordinates x,Coordinates y,creationDate,studentsCount,expelledStudents,formOfEducation,semesterEnum,groupAdmin name,groupAdmin birthday,groupAdmin eyeColor,groupAdmin hairColor,groupAdmin nationality
+1,2,2,2,3,1900-04-21,2,5,DISTANCE_EDUCATION,FIRST,name,1920-06-14,RED,GREEN,VATICAN
+3,2,2,2,3,1900-04-21,2,5,,FIRST,,1920-06-14,RED,GREEN,VATICAN
+2,2,2,2,3,1900-04-21,2,5,,FIRST,name,1920-06-14,RED,GREEN,VATICAN
+4,2,2,2,3,1900-04-21,2,5,,FIRST,name,1920-06-14,RED,GREEN,VATICAN
