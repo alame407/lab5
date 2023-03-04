@@ -46,6 +46,12 @@ public class App {
             printer.println("В файле присутствуют невалидные элементы: " + e.getMessage() +
                     ", в коллекцию ничего не загружено");
         }
+        catch(IllegalArgumentException e){
+            printer.println("файл должен содержать заголовки: key, id, name, Coordinates x, Coordinates y, creationDate,"
+                    + "studentsCount, expelledStudents, formOfEducation, semesterEnum, groupAdmin name," +
+                    "groupAdmin birthday, groupAdmin eyeColor, groupAdmin hairColor, groupAdmin nationality" +
+                    " разделенные запятыми, в коллекцию ничего не загружено");
+        }
 
     }
 
