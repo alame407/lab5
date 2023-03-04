@@ -1,14 +1,21 @@
 package com.alame.lab5.elements;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum FormOfEducation {
     DISTANCE_EDUCATION,
     FULL_TIME_EDUCATION,
     EVENING_CLASSES;
-    private static final String possibleValues = Arrays.toString(values());
+    private static final FormOfEducation[] possibleValues = values();
     public static String possibleValues(){
-        return possibleValues;
+        return Arrays.toString(possibleValues);
+    }
+    public static boolean constantExist(String string){
+        for (FormOfEducation formOfEducation: possibleValues){
+            if (formOfEducation.name().equals(string)) return true;
+        }
+        return false;
     }
 
 }

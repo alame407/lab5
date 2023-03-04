@@ -7,8 +7,14 @@ public enum Semester {
     SIXTH,
     SEVENTH,
     EIGHTH;
-    private static final String possibleValues = Arrays.toString(values());
+    private static final Semester[] possibleValues = values();
     public static String possibleValues(){
-        return possibleValues;
+        return Arrays.toString(possibleValues);
+    }
+    public static boolean constantExist(String string){
+        for (Semester semester: possibleValues){
+            if (semester.name().equals(string)) return true;
+        }
+        return false;
     }
 }

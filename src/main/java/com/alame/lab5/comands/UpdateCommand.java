@@ -26,13 +26,13 @@ public class UpdateCommand extends AbstractCommand{
 
     @Override
     public void setParameters(String[] parameters) throws IncorrectCommandParameterException {
-        if (parameters.length!=1) throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+        if (parameters.length!=1) throw new IncorrectCommandParameterException("Данная команда принимает 1 аргумент");
         else{
             try{
                 id = Integer.parseInt(parameters[0]);
             }
             catch(NumberFormatException e){
-                throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+                throw new IncorrectCommandParameterException("Аргумент команды должен быть целым числом");
             }
         }
     }

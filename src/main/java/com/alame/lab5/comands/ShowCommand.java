@@ -20,7 +20,7 @@ public class ShowCommand extends AbstractCommand{
 
     @Override
     public void setParameters(String[] parameters)  throws IncorrectCommandParameterException{
-        if (parameters.length!=0) throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+        if (parameters.length!=0) throw new IncorrectCommandParameterException("Данная команда не принимает аргументов");
     }
 
     @Override

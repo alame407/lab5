@@ -1,11 +1,11 @@
 package com.alame.lab5.elements;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Coordinates implements Comparable<Coordinates>{
     private Long x; //Поле не может быть null
     private float y;
-    public Coordinates(){}
     public Coordinates(Long x, float y){
         this.x = x;
         this.y = y;
@@ -17,6 +17,19 @@ public class Coordinates implements Comparable<Coordinates>{
 
     public Long getX() {
         return x;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinates that = (Coordinates) o;
+        return Float.compare(that.y, y) == 0 && x.equals(that.x);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override

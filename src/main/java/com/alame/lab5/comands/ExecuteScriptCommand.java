@@ -18,16 +18,16 @@ import java.util.Set;
 public class ExecuteScriptCommand extends AbstractCommand{
     private static final Set<String> openFiles = new HashSet<>();
     private FileReader fileReader;
-    private FileStudyGroupReader fileStudyGroupReader;
-    private FileCommandReader fileCommandReader;
+    private StudyGroupReader studyGroupReader;
+    private CommandReader commandReader;
     private final Printer printer = new ConsolePrinter();
     @Override
     public boolean execute() {
         UserInput userInput = App.getUserInput();
         StudyGroupReader oldStudyGroupReader = userInput.getStudyGroupReader() ;
         CommandReader oldCommandReader = userInput.getCommandReader();
-        userInput.setCommandReader(fileCommandReader);
-        userInput.setStudyGroupReader(fileStudyGroupReader);
+        userInput.setCommandReader(commandReader);
+        userInput.setStudyGroupReader(studyGroupReader);
         while (fileReader.hasNextLine()){
             try{
                 Command command = userInput.readCommand();
@@ -60,18 +60,19 @@ public class ExecuteScriptCommand extends AbstractCommand{
     @Override
     public void setParameters(String[] parameters) throws IncorrectCommandParameterException {
 
-        if (parameters.length!=1) throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+        if (parameters.length!=1)
+            throw new IncorrectCommandParameterException("Данная команда принимает 1 аргумент - название файла");
         if (openFiles.contains(parameters[0])){
             throw new IncorrectCommandParameterException("Такой файл уже уже открыт, " +
                     "команда execute script не выполняется для избежания рекурсии");
         }
         try{
             fileReader = new FileReader(parameters[0]);
-            fileStudyGroupReader = new FileStudyGroupReader(fileReader);
-            fileCommandReader = new FileCommandReader(fileReader);
+            studyGroupReader = new FileStudyGroupReader(fileReader);
+            commandReader = new FileCommandReader(fileReader);
             openFiles.add(fileReader.getFileName());
         } catch (IOException e) {
-            throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+            throw new IncorrectCommandParameterException("Не удалось открыть указанный файл");
         }
     }
 

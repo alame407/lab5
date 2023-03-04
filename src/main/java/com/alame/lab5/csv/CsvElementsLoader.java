@@ -10,6 +10,7 @@ import com.alame.lab5.utility.parsers.CoordinatesParser;
 import com.alame.lab5.utility.parsers.KeyParser;
 import com.alame.lab5.utility.parsers.PersonParser;
 import com.alame.lab5.utility.parsers.StudyGroupParser;
+import com.alame.lab5.utility.validators.StudyGroupValidator;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -24,7 +25,7 @@ public class CsvElementsLoader {
             "groupAdmin birthday", "groupAdmin eyeColor", "groupAdmin hairColor", "groupAdmin nationality"};
     private final Receiver receiver;
     private final Reader reader;
-    public CsvElementsLoader(Reader reader, Receiver receiver) throws IOException {
+    public CsvElementsLoader(Reader reader, Receiver receiver){
         this.reader = reader;
         this.receiver = receiver;
     }
@@ -69,6 +70,8 @@ public class CsvElementsLoader {
                     StudyGroupParser.parseSemester(semesterEnum), groupAdmin);
             elements.put(KeyParser.parseKey(key), studyGroup);
         }
+        if (!(StudyGroupValidator.validCollectionId(elements.values())))
+            throw new IncorrectElementFieldException("id должны быть различны");
         receiver.putAll(elements);
     }
 }

@@ -10,9 +10,9 @@ public interface StudyGroupReader {
 
     Coordinates readCoordinates() throws IncorrectElementFieldException;
 
-    Integer readStudentsCount() throws IncorrectElementFieldException;
+    int readStudentsCount() throws IncorrectElementFieldException;
 
-    Long readExpelledStudent() throws IncorrectElementFieldException;
+    long readExpelledStudent() throws IncorrectElementFieldException;
 
     FormOfEducation readFormOfEducation() throws IncorrectElementFieldException;
 
@@ -20,5 +20,4 @@ public interface StudyGroupReader {
 
     Person readPerson() throws IncorrectElementFieldException;
 
-    StudyGroupReader clone();
 }

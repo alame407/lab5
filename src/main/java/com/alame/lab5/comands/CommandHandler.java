@@ -28,7 +28,7 @@ public class CommandHandler {
                 put("history", new HistoryCommand());
                 put("replace_if_lower", new ReplaceIfLowerCommand(receiver));
                 put("remove_lower_key", new RemoveLowerKeyCommand(receiver));
-                put("remove_all_by_form_of_education formOfEducation", new RemoveAllByFormOfEducationCommand(receiver));
+                put("remove_all_by_form_of_education", new RemoveAllByFormOfEducationCommand(receiver));
                 put("max_by_creation_date", new MaxByCreationDateCommand(receiver));
                 put("print_field_descending_group_admin", new PrintFieldDescendingGroupAdminCommand(receiver));
             }

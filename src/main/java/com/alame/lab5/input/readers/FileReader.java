@@ -10,10 +10,6 @@ public class FileReader {
         bufferedInputStream = new BufferedInputStream(new FileInputStream(path));
         fileName = path;
     }
-    public FileReader(File file) throws IOException{
-        bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-        fileName = file.getName();
-    }
     public void close() throws IOException{
         bufferedInputStream.close();
     }

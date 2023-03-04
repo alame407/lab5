@@ -3,6 +3,9 @@ package com.alame.lab5.utility.validators;
 import com.alame.lab5.elements.*;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StudyGroupValidator {
     public static boolean validStudyGroup(StudyGroup studyGroup){
@@ -32,12 +35,17 @@ public class StudyGroupValidator {
         return expelledStudents>0;
     }
     public static boolean validFormOfEducation(String formOfEducation){
-        return formOfEducation==null || FormOfEducation.possibleValues().contains(formOfEducation);
+        return formOfEducation==null || FormOfEducation.constantExist(formOfEducation);
     }
     public static boolean validSemester(String semester){
-        return semester==null || Semester.possibleValues().contains(semester);
+        return semester==null || Semester.constantExist(semester);
     }
     public static boolean validPerson(Person person){
         return PersonValidator.validPerson(person);
+    }
+    public static boolean validCollectionId(Collection<StudyGroup> studyGroups){
+        Set<Integer> id = new HashSet<>();
+        studyGroups.forEach(element -> id.add(element.getId()));
+        return id.size() == studyGroups.size();
     }
 }

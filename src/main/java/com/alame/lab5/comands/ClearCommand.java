@@ -3,8 +3,20 @@ package com.alame.lab5.comands;
 import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 
+/**
+ * Команда для очистки коллекции
+ */
+
 public class ClearCommand extends AbstractCommand {
+    /**
+     *
+     */
     private final Receiver receiver;
+
+    /**
+     *
+     * @param receiver -
+     */
     public ClearCommand(Receiver receiver){
         this.receiver = receiver;
     }
@@ -16,7 +28,7 @@ public class ClearCommand extends AbstractCommand {
 
     @Override
     public void setParameters(String[] parameters) throws IncorrectCommandParameterException {
-        if (parameters.length!=0) throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+        if (parameters.length!=0) throw new IncorrectCommandParameterException("Данная команда не принимает аргументов");
     }
 
     @Override

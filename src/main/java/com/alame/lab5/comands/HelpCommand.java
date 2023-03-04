@@ -7,8 +7,6 @@ import com.alame.lab5.utility.writers.Printer;
 
 public class HelpCommand extends AbstractCommand{
     private final Printer printer = new ConsolePrinter();
-    public HelpCommand(){
-    }
     @Override
     public boolean execute() {
         for(Command command: App.getCommandHandler().getAllCommands()){
@@ -19,7 +17,7 @@ public class HelpCommand extends AbstractCommand{
 
     @Override
     public void setParameters(String[] parameters) throws IncorrectCommandParameterException {
-        if (parameters.length!=0) throw new IncorrectCommandParameterException("Аргументы команды введены неправильно");
+        if (parameters.length!=0) throw new IncorrectCommandParameterException("Данная команда не принимает аргументов");
     }
 
     @Override

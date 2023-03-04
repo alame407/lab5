@@ -6,8 +6,14 @@ public enum EyesColor {
     RED,
     BLUE,
     BROWN;
-    private static final String possibleValues = Arrays.toString(values());
+    private static final EyesColor[] possibleValues = values();
     public static String possibleValues(){
-        return possibleValues;
+        return Arrays.toString(possibleValues);
+    }
+    public static boolean constantExist(String string){
+        for (EyesColor eyesColor: possibleValues){
+            if (eyesColor.name().equals(string)) return true;
+        }
+        return false;
     }
 }

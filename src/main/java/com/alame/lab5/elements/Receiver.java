@@ -9,13 +9,13 @@ import java.util.*;
 public class Receiver {
     private final Map<String, StudyGroup> studyGroupMap;
     private final java.time.LocalDate creationDate;
-    private final String collectionType = "TreeMap";
+    private final String COLLECTION_TYPE = "TreeMap";
     public Receiver(){
         studyGroupMap = new TreeMap<>();
         creationDate = java.time.LocalDate.now();
     }
     public String info(){
-        return "тип коллекции: " + collectionType + " дата создания коллекции: " + creationDate +
+        return "тип коллекции: " + COLLECTION_TYPE + " дата создания коллекции: " + creationDate +
                 " количество элементов: " + studyGroupMap.size();
     }
     public List<StudyGroup> show(){

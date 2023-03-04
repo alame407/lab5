@@ -11,7 +11,6 @@ public class Person implements Comparable<Person>{
     private EyesColor eyeColor; //Поле не может быть null
     private HairColor hairColor; //Поле может быть null
     private Country nationality; //Поле не может быть null
-    public Person(){}
     public Person(String name, LocalDate birthday, EyesColor eyeColor, HairColor hairColor, Country nationality){
         this.name = name;
         this.birthday = birthday;

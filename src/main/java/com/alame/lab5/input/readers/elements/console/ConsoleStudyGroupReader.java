@@ -36,7 +36,7 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
         return consoleCoordinatesReader.readCoordinates();
     }
     @Override
-    public Integer readStudentsCount(){
+    public int readStudentsCount(){
         printer.print("Введите количество студентов ");
         while (true){
             String nextLine = getNextLine();
@@ -50,7 +50,7 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
         }
     }
     @Override
-    public Long readExpelledStudent(){
+    public long readExpelledStudent(){
         printer.print("Введите количество отчисленных студентов ");
         while (true){
             String nextLine = getNextLine();
@@ -94,14 +94,5 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
     @Override
     public Person readPerson(){
         return consolePersonReader.readPerson();
-    }
-    @Override
-    public StudyGroupReader clone() {
-        try {
-            return (StudyGroupReader) super.clone();
-        } catch (CloneNotSupportedException e) {
-            // this shouldn't happen, since we are Cloneable
-            throw new InternalError(e);
-        }
     }
 }

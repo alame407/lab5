@@ -21,12 +21,12 @@ public class PersonValidator {
         return !(birthday==null);
     }
     public static boolean validEyeColor(String eyeColor){
-        return eyeColor != null && EyesColor.possibleValues().contains(eyeColor);
+        return eyeColor != null && EyesColor.constantExist(eyeColor);
     }
     public static boolean validHairColor(String hairColor){
-        return hairColor==null || HairColor.possibleValues().contains(hairColor);
+        return hairColor==null || HairColor.constantExist(hairColor);
     }
     public static boolean validNationality(String nationality){
-        return nationality!=null && Country.possibleValues().contains(nationality);
+        return nationality!=null && Country.constantExist(nationality);
     }
 }

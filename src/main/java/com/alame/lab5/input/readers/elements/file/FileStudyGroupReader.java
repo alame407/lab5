@@ -41,7 +41,7 @@ public class FileStudyGroupReader implements StudyGroupReader {
     }
 
     @Override
-    public Integer readStudentsCount() throws IncorrectElementFieldException {
+    public int readStudentsCount() throws IncorrectElementFieldException {
         try{
             String nextLine = fileReader.getNextLine();
             if(nextLine.equals("")) nextLine = null;
@@ -52,7 +52,7 @@ public class FileStudyGroupReader implements StudyGroupReader {
     }
 
     @Override
-    public Long readExpelledStudent() throws IncorrectElementFieldException {
+    public long readExpelledStudent() throws IncorrectElementFieldException {
         try {
             String nextLine = fileReader.getNextLine();
             if(nextLine.equals("")) nextLine = null;
@@ -89,14 +89,5 @@ public class FileStudyGroupReader implements StudyGroupReader {
         return filePersonReader.readPerson();
     }
 
-    @Override
-    public StudyGroupReader clone() {
-        try {
-            return (StudyGroupReader) super.clone();
-        } catch (CloneNotSupportedException e) {
-            // this shouldn't happen, since we are Cloneable
-            throw new InternalError(e);
-        }
-    }
 
 }
