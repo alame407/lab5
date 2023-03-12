@@ -10,8 +10,8 @@ import java.time.LocalDate;
 public class PersonValidator {
     public static boolean validPerson(Person person){
         return validName(person.getName()) && validBirthday(person.getBirthday()) &&
-                validEyeColor(person.getEyeColor().toString()) && validHairColor(person.getHairColor().toString())
-                && validNationality(person.getNationality().toString());
+                validEyeColor(person.getEyeColor()) && validHairColor(person.getHairColor())
+                && validNationality(person.getNationality());
 
     }
     public static boolean validName(String name){
@@ -23,10 +23,19 @@ public class PersonValidator {
     public static boolean validEyeColor(String eyeColor){
         return eyeColor != null && EyesColor.constantExist(eyeColor);
     }
+    public static boolean validEyeColor(EyesColor eyesColor){
+        return eyesColor!=null;
+    }
     public static boolean validHairColor(String hairColor){
         return hairColor==null || HairColor.constantExist(hairColor);
     }
+    public static boolean validHairColor(HairColor hairColor){
+        return true;
+    }
     public static boolean validNationality(String nationality){
         return nationality!=null && Country.constantExist(nationality);
+    }
+    public static boolean validNationality(Country nationality){
+        return nationality!=null;
     }
 }

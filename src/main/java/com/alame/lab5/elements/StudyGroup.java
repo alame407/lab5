@@ -1,7 +1,10 @@
 package com.alame.lab5.elements;
 
 
+import com.alame.lab5.exceptions.IncorrectCommandParameterException;
+import com.alame.lab5.exceptions.IncorrectElementFieldException;
 import com.alame.lab5.utility.comparator.NullSafeComparator;
+import com.alame.lab5.utility.validators.StudyGroupValidator;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -81,7 +84,50 @@ public class StudyGroup implements Comparable<StudyGroup>{
     public Semester getSemesterEnum() {
         return semesterEnum;
     }
-    
+
+    public void setStudentsCount(int studentsCount) throws IncorrectElementFieldException {
+        if(!StudyGroupValidator.validStudentsCount(studentsCount))
+            throw new IncorrectElementFieldException("поле students count не может принимать значение " + studentsCount);
+        this.studentsCount = studentsCount;
+    }
+
+    public void setSemesterEnum(Semester semesterEnum) throws IncorrectElementFieldException {
+        if(!StudyGroupValidator.validSemester(semesterEnum))
+            throw new IncorrectElementFieldException("поле semesterEnum не может принимать значение "+ semesterEnum);
+        this.semesterEnum = semesterEnum;
+    }
+
+    public void setGroupAdmin(Person groupAdmin) throws IncorrectElementFieldException {
+        if (!StudyGroupValidator.validPerson(groupAdmin))
+            throw new IncorrectElementFieldException("поле groupAdmin не может принимать значение " + groupAdmin);
+        this.groupAdmin = groupAdmin;
+    }
+
+    public void setFormOfEducation(FormOfEducation formOfEducation) throws IncorrectElementFieldException{
+        if (!StudyGroupValidator.validFormOfEducation(formOfEducation))
+            throw new IncorrectElementFieldException("поле formOfEducation не может принимать значение "
+                    + formOfEducation);
+        this.formOfEducation = formOfEducation;
+    }
+
+    public void setExpelledStudents(long expelledStudents) throws IncorrectElementFieldException{
+        if (!StudyGroupValidator.validExpelledStudents(expelledStudents))
+            throw new IncorrectElementFieldException("поле expelledStudents не может принимать значение "
+                    + expelledStudents);
+        this.expelledStudents = expelledStudents;
+    }
+
+    public void setName(String name) throws IncorrectElementFieldException {
+        if (!StudyGroupValidator.validName(name))
+            throw new IncorrectElementFieldException("поле name не может принимать значение " + name);
+        this.name = name;
+    }
+
+    public void setCoordinates(Coordinates coordinates) throws IncorrectElementFieldException {
+        if (!StudyGroupValidator.validCoordinates(coordinates))
+            throw new IncorrectElementFieldException("поле coordinates не может принимать значение " + coordinates);
+        this.coordinates = coordinates;
+    }
 
     @Override
     public String toString() {

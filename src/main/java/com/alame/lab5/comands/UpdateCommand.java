@@ -5,6 +5,8 @@ import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.elements.StudyGroup;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
+import com.alame.lab5.input.UserInput;
+import com.alame.lab5.input.readers.elements.StudyGroupReader;
 
 public class UpdateCommand extends AbstractCommand{
     private int id;
@@ -15,8 +17,11 @@ public class UpdateCommand extends AbstractCommand{
     @Override
     public boolean execute() {
         try{
-            StudyGroup newStudyGroup = App.getUserInput().readStudyGroup();
-            receiver.update(id, newStudyGroup);
+            StudyGroupReader studyGroupReader = App.getUserInput().getStudyGroupReader();
+            receiver.update(id, studyGroupReader.readName(), studyGroupReader.readCoordinates(),
+                    studyGroupReader.readStudentsCount(), studyGroupReader.readExpelledStudent(),
+                    studyGroupReader.readFormOfEducation(), studyGroupReader.readSemester(),
+                    studyGroupReader.readPerson());
             return true;
         }
         catch(IncorrectElementFieldException e){
@@ -30,6 +35,7 @@ public class UpdateCommand extends AbstractCommand{
         else{
             try{
                 id = Integer.parseInt(parameters[0]);
+                if (!receiver.idExist(id)) throw new IncorrectCommandParameterException("Такого id не существует");
             }
             catch(NumberFormatException e){
                 throw new IncorrectCommandParameterException("Аргумент команды должен быть целым числом");

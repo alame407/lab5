@@ -2,6 +2,7 @@ package com.alame.lab5.elements;
 
 import com.alame.lab5.csv.CsvElementsWriter;
 import com.alame.lab5.exceptions.CollectionIsEmptyException;
+import com.alame.lab5.exceptions.IncorrectElementFieldException;
 
 import java.io.IOException;
 import java.util.*;
@@ -24,12 +25,22 @@ public class Receiver {
     public void insert(String key, StudyGroup element){
         studyGroupMap.put(key, element);
     }
-    public void update(int id, StudyGroup newStudyGroup){
+    public void update(int id, String name, Coordinates coordinates, int studentsCount, long expelledStudents,
+                       FormOfEducation formOfEducation, Semester semester, Person groupAdmin)
+            throws IncorrectElementFieldException{
         for(Map.Entry<String, StudyGroup> entry: studyGroupMap.entrySet()){
-            if (entry.getValue().getId()==id) {
-                studyGroupMap.replace(entry.getKey(), newStudyGroup);
+            StudyGroup studyGroup = entry.getValue();
+            if (studyGroup.getId()==id) {
+                studyGroup.setGroupAdmin(groupAdmin);
+                studyGroup.setName(name);
+                studyGroup.setCoordinates(coordinates);
+                studyGroup.setExpelledStudents(expelledStudents);
+                studyGroup.setFormOfEducation(formOfEducation);
+                studyGroup.setSemesterEnum(semester);
+                studyGroup.setStudentsCount(studentsCount);
+                return;
             }
-            return;
+
         }
     }
     public void removeKey(String key){
@@ -67,5 +78,11 @@ public class Receiver {
     }
     public void putAll(Map<String, StudyGroup> studyGroupMap){
         this.studyGroupMap.putAll(studyGroupMap);
+    }
+    public boolean idExist(int id){
+        for (StudyGroup studyGroup: studyGroupMap.values()){
+            if (studyGroup.getId()==id) return true;
+        }
+        return false;
     }
 }

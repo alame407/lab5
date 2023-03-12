@@ -13,8 +13,8 @@ public class StudyGroupValidator {
                 validCoordinates(studyGroup.getCoordinates()) &&  validCreationDate(studyGroup.getCreationDate()) &&
                 validStudentsCount(studyGroup.getStudentsCount()) &&
                 validExpelledStudents(studyGroup.getExpelledStudents()) &&
-                validFormOfEducation(studyGroup.getFormOfEducation().toString()) &&
-                validSemester(studyGroup.getSemesterEnum().toString()) && validPerson(studyGroup.getGroupAdmin());
+                validFormOfEducation(studyGroup.getFormOfEducation()) &&
+                validSemester(studyGroup.getSemesterEnum()) && validPerson(studyGroup.getGroupAdmin());
     }
     public static boolean validName(String name){
         return !(name == null || name.equals(""));
@@ -37,8 +37,14 @@ public class StudyGroupValidator {
     public static boolean validFormOfEducation(String formOfEducation){
         return formOfEducation==null || FormOfEducation.constantExist(formOfEducation);
     }
+    public static boolean validFormOfEducation(FormOfEducation formOfEducation){
+        return true;
+    }
     public static boolean validSemester(String semester){
         return semester==null || Semester.constantExist(semester);
+    }
+    public static boolean validSemester(Semester semester){
+        return true;
     }
     public static boolean validPerson(Person person){
         return PersonValidator.validPerson(person);

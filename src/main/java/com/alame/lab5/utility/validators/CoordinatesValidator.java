@@ -10,6 +10,6 @@ public class CoordinatesValidator {
         return x!=null;
     }
     public static boolean validY(float y){
-        return true;
+        return y!=Float.POSITIVE_INFINITY && y!= Float.NEGATIVE_INFINITY;
     }
 }

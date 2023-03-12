@@ -4,24 +4,24 @@ import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 
 /**
- * Команда для очистки коллекции
+ * Command for clear collection
  */
 
 public class ClearCommand extends AbstractCommand {
     /**
-     *
+     * field that realize collection clear
      */
     private final Receiver receiver;
 
     /**
-     *
-     * @param receiver -
+     * Constructs
+     * @param receiver
      */
     public ClearCommand(Receiver receiver){
         this.receiver = receiver;
     }
     @Override
-    public boolean execute() {
+    public boolean execute(){
         receiver.clear();
         return true;
     }
