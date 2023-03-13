@@ -21,9 +21,14 @@ public class ExecuteScriptCommand extends AbstractCommand{
     private StudyGroupReader studyGroupReader;
     private CommandReader commandReader;
     private final Printer printer = new ConsolePrinter();
+    private final UserInput userInput;
+    private final CommandHandler commandHandler;
+    public ExecuteScriptCommand(UserInput userInput, CommandHandler commandHandler){
+        this.userInput = userInput;
+        this.commandHandler = commandHandler;
+    }
     @Override
     public boolean execute() {
-        UserInput userInput = App.getUserInput();
         StudyGroupReader oldStudyGroupReader = userInput.getStudyGroupReader() ;
         CommandReader oldCommandReader = userInput.getCommandReader();
         userInput.setCommandReader(commandReader);
@@ -31,7 +36,7 @@ public class ExecuteScriptCommand extends AbstractCommand{
         while (fileReader.hasNextLine()){
             try{
                 Command command = userInput.readCommand();
-                boolean commandExecuteCorrectly = App.getCommandHandler().handle(command);
+                boolean commandExecuteCorrectly = commandHandler.handle(command);
                 if (!commandExecuteCorrectly){
                     printer.println("В файле " + fileReader.getFileName() + " ошибка в команде " + command.name()
                             + " все команды до выполнены успешно");

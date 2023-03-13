@@ -11,13 +11,15 @@ import com.alame.lab5.input.readers.elements.StudyGroupReader;
 public class UpdateCommand extends AbstractCommand{
     private int id;
     private final Receiver receiver;
-    public UpdateCommand(Receiver receiver){
+    private final UserInput userInput;
+    public UpdateCommand(Receiver receiver, UserInput userInput){
         this.receiver = receiver;
+        this.userInput = userInput;
     }
     @Override
     public boolean execute() {
         try{
-            StudyGroupReader studyGroupReader = App.getUserInput().getStudyGroupReader();
+            StudyGroupReader studyGroupReader = userInput.getStudyGroupReader();
             receiver.update(id, studyGroupReader.readName(), studyGroupReader.readCoordinates(),
                     studyGroupReader.readStudentsCount(), studyGroupReader.readExpelledStudent(),
                     studyGroupReader.readFormOfEducation(), studyGroupReader.readSemester(),

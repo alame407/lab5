@@ -4,17 +4,20 @@ import com.alame.lab5.App;
 import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
+import com.alame.lab5.input.UserInput;
 
 public class ReplaceIfLowerCommand extends AbstractCommand{
     private  String key;
     private final Receiver receiver;
-    public ReplaceIfLowerCommand(Receiver receiver){
+    private final UserInput userInput;
+    public ReplaceIfLowerCommand(Receiver receiver, UserInput userInput){
         this.receiver = receiver;
+        this.userInput = userInput;
     }
     @Override
     public boolean execute() {
         try {
-            receiver.replaceIfLower(key, App.getUserInput().readStudyGroup());
+            receiver.replaceIfLower(key, userInput.readStudyGroup());
             return true;
         }
         catch(IncorrectElementFieldException e){

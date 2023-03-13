@@ -4,16 +4,19 @@ import com.alame.lab5.App;
 import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
+import com.alame.lab5.input.UserInput;
 
 public class RemoveAllByFormOfEducationCommand extends AbstractCommand{
     private final Receiver receiver;
-    public RemoveAllByFormOfEducationCommand(Receiver receiver){
+    private final UserInput userInput;
+    public RemoveAllByFormOfEducationCommand(Receiver receiver, UserInput userInput){
         this.receiver = receiver;
+        this.userInput = userInput;
     }
     @Override
     public boolean execute() {
         try {
-            receiver.removeAllByFormOfEducation(App.getUserInput().getStudyGroupReader().readFormOfEducation());
+            receiver.removeAllByFormOfEducation(userInput.getStudyGroupReader().readFormOfEducation());
             return true;
         } catch (IncorrectElementFieldException e) {
             return false;

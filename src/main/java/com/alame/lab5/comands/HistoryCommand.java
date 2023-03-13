@@ -7,9 +7,13 @@ import com.alame.lab5.utility.writers.Printer;
 
 public class HistoryCommand extends AbstractCommand{
     private final Printer printer = new ConsolePrinter();
+    private final CommandHandler commandHandler;
+    public HistoryCommand(CommandHandler commandHandler){
+        this.commandHandler = commandHandler;
+    }
     @Override
     public boolean execute() {
-        printer.println(App.getCommandHandler().getHistory());
+        printer.println(commandHandler.getHistory());
         return true;
     }
 

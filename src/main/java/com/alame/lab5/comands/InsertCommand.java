@@ -4,17 +4,20 @@ import com.alame.lab5.App;
 import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
+import com.alame.lab5.input.UserInput;
 
 public class InsertCommand extends AbstractCommand{
     private final Receiver receiver;
+    private final UserInput userInput;
     private String key;
-    public InsertCommand(Receiver receiver){
+    public InsertCommand(Receiver receiver, UserInput userInput){
         this.receiver = receiver;
+        this.userInput = userInput;
     }
     @Override
     public boolean execute(){
         try {
-            receiver.insert(key, App.getUserInput().readStudyGroup());
+            receiver.insert(key, userInput.readStudyGroup());
             return true;
         }
         catch (IncorrectElementFieldException e){

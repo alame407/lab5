@@ -7,9 +7,10 @@ import com.alame.lab5.utility.writers.Printer;
 
 public class HelpCommand extends AbstractCommand{
     private final Printer printer = new ConsolePrinter();
+    public HelpCommand(){}
     @Override
     public boolean execute() {
-        for(Command command: App.getCommandHandler().getAllCommands()){
+        for(Command command: CommandMapper.getInstance().getAllCommands()){
             printer.println(command.description());
         }
         return true;

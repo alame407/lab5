@@ -1,7 +1,6 @@
 package com.alame.lab5;
 
-import com.alame.lab5.comands.Command;
-import com.alame.lab5.comands.CommandHandler;
+import com.alame.lab5.comands.*;
 import com.alame.lab5.csv.CsvElementsLoader;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
@@ -16,20 +15,15 @@ import com.alame.lab5.utility.writers.Printer;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App {
-    private static final UserInput userInput = new UserInput(new ConsoleCommandReader(), new ConsoleStudyGroupReader());
-    private final static Receiver receiver = new Receiver();
-    private final static CommandHandler commandHandler = new CommandHandler(receiver);
+    private final UserInput userInput = new UserInput(new ConsoleCommandReader(), new ConsoleStudyGroupReader());
+    private final Receiver receiver = new Receiver();
+    private final CommandHandler commandHandler = new CommandHandler();
     private final Printer printer = new ConsolePrinter();
 
-    public static UserInput getUserInput() {
-        return userInput;
-    }
-
-    public static CommandHandler getCommandHandler() {
-        return commandHandler;
-    }
     public App(String[] args){
         if (args.length!=1){
             printer.println("В переданных аргументах не 1 параметр с название файла, " +
@@ -52,6 +46,28 @@ public class App {
                     "groupAdmin birthday, groupAdmin eyeColor, groupAdmin hairColor, groupAdmin nationality" +
                     " разделенные запятыми, в коллекцию ничего не загружено");
         }
+        Map<String, Command> stringToCommand = new HashMap<>()
+        {
+            {
+                put("help", new HelpCommand());
+                put("info", new InfoCommand(receiver));
+                put("insert", new InsertCommand(receiver, userInput));
+                put("show", new ShowCommand(receiver));
+                put("update", new UpdateCommand(receiver, userInput));
+                put("remove_key", new RemoveKeyCommand(receiver));
+                put("clear", new ClearCommand(receiver));
+                put("save", new SaveCommand(receiver));
+                put("execute_script", new ExecuteScriptCommand(userInput,commandHandler));
+                put("exit", new ExitCommand());
+                put("history", new HistoryCommand(commandHandler));
+                put("replace_if_lower", new ReplaceIfLowerCommand(receiver, userInput));
+                put("remove_lower_key", new RemoveLowerKeyCommand(receiver));
+                put("remove_all_by_form_of_education", new RemoveAllByFormOfEducationCommand(receiver, userInput));
+                put("max_by_creation_date", new MaxByCreationDateCommand(receiver));
+                put("print_field_descending_group_admin", new PrintFieldDescendingGroupAdminCommand(receiver));
+            }
+        };
+        CommandMapper.getInstance().addAllCommands(stringToCommand);
     }
 
     public void start(){
