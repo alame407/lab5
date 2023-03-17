@@ -1,40 +1,54 @@
 package com.alame.lab5.input;
 
-import com.alame.lab5.comands.Command;
-import com.alame.lab5.elements.StudyGroup;
-import com.alame.lab5.exceptions.IncorrectCommandParameterException;
-import com.alame.lab5.exceptions.IncorrectElementFieldException;
+
 import com.alame.lab5.input.readers.commands.CommandReader;
 import com.alame.lab5.input.readers.elements.StudyGroupReader;
 
+/**
+ * class for getting user input
+ */
 public class UserInput {
+    /**
+     * current StudyGroupReader
+     */
     private StudyGroupReader studyGroupReader;
+    /**
+     * current CommandReader
+     */
     private CommandReader commandReader;
     public UserInput(CommandReader commandReader, StudyGroupReader studyGroupReader){
         this.commandReader = commandReader;
         this.studyGroupReader = studyGroupReader;
     }
 
+    /**
+     * set current CommandReader
+     * @param commandReader - current CommandReader
+     */
     public void setCommandReader(CommandReader commandReader) {
         this.commandReader = commandReader;
     }
 
+    /**
+     * set current StudyGroupReader
+     * @param studyGroupReader - current StudyGroupReader
+     */
     public void setStudyGroupReader(StudyGroupReader studyGroupReader) {
         this.studyGroupReader = studyGroupReader;
     }
-    public StudyGroup readStudyGroup() throws IncorrectElementFieldException {
-        return studyGroupReader.readStudyGroup();
-    }
 
+    /**
+     * @return current CommandReader
+     */
     public CommandReader getCommandReader() {
         return commandReader;
     }
 
+    /**
+     * @return current StudyGroupReader
+     */
     public StudyGroupReader getStudyGroupReader() {
         return studyGroupReader;
     }
 
-    public Command readCommand() throws IncorrectCommandParameterException {
-        return commandReader.readCommand();
-    }
 }

@@ -1,11 +1,10 @@
 package com.alame.lab5.comands;
 
-import com.alame.lab5.App;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
-public class HelpCommand extends AbstractCommand{
+public class HelpCommand implements Command{
     private final Printer printer = new ConsolePrinter();
     public HelpCommand(){}
     @Override
@@ -29,5 +28,10 @@ public class HelpCommand extends AbstractCommand{
     @Override
     public String name() {
         return "help";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new HelpCommand();
     }
 }

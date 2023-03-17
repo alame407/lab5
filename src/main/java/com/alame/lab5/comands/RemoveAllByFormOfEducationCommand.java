@@ -1,12 +1,11 @@
 package com.alame.lab5.comands;
 
-import com.alame.lab5.App;
 import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
 import com.alame.lab5.input.UserInput;
 
-public class RemoveAllByFormOfEducationCommand extends AbstractCommand{
+public class RemoveAllByFormOfEducationCommand implements Command{
     private final Receiver receiver;
     private final UserInput userInput;
     public RemoveAllByFormOfEducationCommand(Receiver receiver, UserInput userInput){
@@ -38,5 +37,10 @@ public class RemoveAllByFormOfEducationCommand extends AbstractCommand{
     @Override
     public String name() {
         return "remove_all_by_form_of_education";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new RemoveAllByFormOfEducationCommand(receiver, userInput);
     }
 }

@@ -1,11 +1,10 @@
 package com.alame.lab5.comands;
 
-import com.alame.lab5.App;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
-public class HistoryCommand extends AbstractCommand{
+public class HistoryCommand implements Command{
     private final Printer printer = new ConsolePrinter();
     private final CommandHandler commandHandler;
     public HistoryCommand(CommandHandler commandHandler){
@@ -30,5 +29,10 @@ public class HistoryCommand extends AbstractCommand{
     @Override
     public String name() {
         return "history";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new HistoryCommand(commandHandler);
     }
 }

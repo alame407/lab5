@@ -5,7 +5,7 @@ import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
-public class PrintFieldDescendingGroupAdminCommand extends AbstractCommand{
+public class PrintFieldDescendingGroupAdminCommand implements Command{
     private final Receiver receiver;
     private final Printer printer = new ConsolePrinter();
     public PrintFieldDescendingGroupAdminCommand(Receiver receiver){
@@ -30,5 +30,10 @@ public class PrintFieldDescendingGroupAdminCommand extends AbstractCommand{
     @Override
     public String name() {
         return "print_field_descending_group_admin";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new PrintFieldDescendingGroupAdminCommand(receiver);
     }
 }

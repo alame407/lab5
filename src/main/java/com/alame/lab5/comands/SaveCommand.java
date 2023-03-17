@@ -7,7 +7,7 @@ import com.alame.lab5.utility.writers.Printer;
 
 import java.io.IOException;
 
-public class SaveCommand extends AbstractCommand{
+public class SaveCommand implements Command{
     private final Printer printer = new ConsolePrinter();
     private final Receiver receiver;
     public SaveCommand(Receiver receiver){
@@ -38,5 +38,10 @@ public class SaveCommand extends AbstractCommand{
     @Override
     public String name() {
         return "save";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new SaveCommand(receiver);
     }
 }

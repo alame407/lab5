@@ -1,7 +1,6 @@
 package com.alame.lab5.elements;
 
 
-import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
 import com.alame.lab5.utility.comparator.NullSafeComparator;
 import com.alame.lab5.utility.validators.StudyGroupValidator;

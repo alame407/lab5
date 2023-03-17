@@ -1,6 +1,5 @@
 package com.alame.lab5.comands;
 
-import com.alame.lab5.App;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.input.UserInput;
 import com.alame.lab5.input.readers.FileReader;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ExecuteScriptCommand extends AbstractCommand{
+public class ExecuteScriptCommand implements Command{
     private static final Set<String> openFiles = new HashSet<>();
     private FileReader fileReader;
     private StudyGroupReader studyGroupReader;
@@ -35,7 +34,7 @@ public class ExecuteScriptCommand extends AbstractCommand{
         userInput.setStudyGroupReader(studyGroupReader);
         while (fileReader.hasNextLine()){
             try{
-                Command command = userInput.readCommand();
+                Command command = userInput.getCommandReader().readCommand();
                 boolean commandExecuteCorrectly = commandHandler.handle(command);
                 if (!commandExecuteCorrectly){
                     printer.println("В файле " + fileReader.getFileName() + " ошибка в команде " + command.name()
@@ -89,5 +88,10 @@ public class ExecuteScriptCommand extends AbstractCommand{
     @Override
     public String name() {
         return "execute_script";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new ExecuteScriptCommand(userInput, commandHandler);
     }
 }

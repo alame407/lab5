@@ -6,7 +6,7 @@ import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
-public class MaxByCreationDateCommand extends AbstractCommand{
+public class MaxByCreationDateCommand implements Command{
     private final Receiver receiver;
     private final Printer printer = new ConsolePrinter();
     public MaxByCreationDateCommand(Receiver receiver){
@@ -38,5 +38,10 @@ public class MaxByCreationDateCommand extends AbstractCommand{
     @Override
     public String name() {
         return "max_by_creation_date";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new MaxByCreationDateCommand(receiver);
     }
 }

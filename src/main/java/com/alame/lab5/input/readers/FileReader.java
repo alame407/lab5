@@ -2,23 +2,54 @@ package com.alame.lab5.input.readers;
 
 import java.io.*;
 
+/**
+ * class for reading file
+ */
 public class FileReader {
+    /**
+     * field that realise reading
+     */
     private final BufferedInputStream bufferedInputStream;
+    /**
+     * path to file
+     */
     private final String fileName;
+    /**
+     * field that show if file has next line
+     */
     private boolean hasNextLine = true;
     public FileReader(String path) throws IOException {
         bufferedInputStream = new BufferedInputStream(new FileInputStream(path));
         fileName = path;
     }
+
+    /**
+     * close stream
+     * @throws IOException if something goes wrong with file
+     */
     public void close() throws IOException{
         bufferedInputStream.close();
     }
+
+    /**
+     * @return fileName
+     */
     public String getFileName(){
         return fileName;
     }
+
+    /**
+     * @return if file has next line
+     */
     public boolean hasNextLine(){
         return hasNextLine;
     }
+
+    /**
+     * get next line from file, set hasNextLine to false if file end
+     * @return next line
+     * @throws IOException if something goes wrong with file
+     */
     public String getNextLine() throws IOException {
         if (!hasNextLine) throw new IOException("File is end");
         StringBuilder result = new StringBuilder();

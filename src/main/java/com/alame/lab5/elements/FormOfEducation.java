@@ -1,7 +1,6 @@
 package com.alame.lab5.elements;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum FormOfEducation {
     DISTANCE_EDUCATION,

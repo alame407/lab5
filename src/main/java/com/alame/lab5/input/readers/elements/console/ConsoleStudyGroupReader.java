@@ -8,15 +8,34 @@ import com.alame.lab5.utility.parsers.StudyGroupParser;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
+/**
+ * class for reading StudyGroup from console
+ */
 public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroupReader {
+    /**
+     * field that realise reading coordinates
+     */
     private final ConsoleCoordinatesReader consoleCoordinatesReader = new ConsoleCoordinatesReader();
+    /**
+     * field that realise reading person
+     */
     private final ConsolePersonReader consolePersonReader = new ConsolePersonReader();
     private final Printer printer = new ConsolePrinter();
+
+    /**
+     * read studyGroup from console
+     * @return received studyGroup
+     */
     @Override
     public StudyGroup readStudyGroup() {
         return new StudyGroup(readName(), readCoordinates(), readStudentsCount(),
                 readExpelledStudent(), readFormOfEducation(), readSemester(), readPerson());
     }
+
+    /**
+     * read name from console
+     * @return received name
+     */
     @Override
     public String readName(){
         printer.print("Введите имя группы ");
@@ -31,10 +50,20 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
             }
         }
     }
+
+    /**
+     * read coordinates from console
+     * @return received coordinates
+     */
     @Override
     public Coordinates readCoordinates(){
         return consoleCoordinatesReader.readCoordinates();
     }
+
+    /**
+     * read studentsCount from console
+     * @return received studentsCount
+     */
     @Override
     public int readStudentsCount(){
         printer.print("Введите количество студентов ");
@@ -49,6 +78,11 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
             }
         }
     }
+
+    /**
+     * read expelledStudents from console
+     * @return received expelledStudents
+     */
     @Override
     public long readExpelledStudent(){
         printer.print("Введите количество отчисленных студентов ");
@@ -63,6 +97,11 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
             }
         }
     }
+
+    /**
+     * read formOfEducation from console
+     * @return received formOfEducation
+     */
     @Override
     public FormOfEducation readFormOfEducation(){
         printer.print("введите форму обучения, возможные варианты " + FormOfEducation.possibleValues() + " ");
@@ -77,6 +116,11 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
             }
         }
     }
+
+    /**
+     * read semester from console
+     * @return received semester
+     */
     @Override
     public Semester readSemester(){
         printer.print("Введите семестр, возможные варианты " + Semester.possibleValues() + " ");
@@ -91,6 +135,11 @@ public class ConsoleStudyGroupReader extends ConsoleReader implements StudyGroup
             }
         }
     }
+
+    /**
+     * read person from console
+     * @return received person
+     */
     @Override
     public Person readPerson(){
         return consolePersonReader.readPerson();

@@ -1,12 +1,11 @@
 package com.alame.lab5.comands;
 
 import com.alame.lab5.elements.Receiver;
-import com.alame.lab5.elements.StudyGroup;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
-public class ShowCommand extends AbstractCommand{
+public class ShowCommand implements Command{
     private final Receiver receiver;
     private final Printer printer = new ConsolePrinter();
     public ShowCommand(Receiver receiver){
@@ -31,5 +30,10 @@ public class ShowCommand extends AbstractCommand{
     @Override
     public String name() {
         return "show";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new ShowCommand(receiver);
     }
 }

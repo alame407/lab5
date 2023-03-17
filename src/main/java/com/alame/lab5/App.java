@@ -73,10 +73,9 @@ public class App {
     public void start(){
         while (true){
             try {
-                Command command = userInput.readCommand();
+                Command command = userInput.getCommandReader().readCommand();
                 commandHandler.handle(command);
             } catch (IncorrectCommandParameterException e) {
-                //this shouldn't happen, since we use ConsoleReader hear
                 printer.println(e.getMessage());
             }
 

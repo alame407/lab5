@@ -19,16 +19,35 @@ import java.io.Reader;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * class for read element of collection from csv file
+ */
 public class CsvElementsLoader {
+    /**
+     * headers of csv file
+     */
     private final static String[] HEADERS = { "key", "id", "name", "Coordinates x", "Coordinates y", "creationDate",
             "studentsCount", "expelledStudents", "formOfEducation", "semesterEnum", "groupAdmin name",
             "groupAdmin birthday", "groupAdmin eyeColor", "groupAdmin hairColor", "groupAdmin nationality"};
+    /**
+     * field that store collection
+     */
     private final Receiver receiver;
+    /**
+     * field for reading file
+     */
     private final Reader reader;
     public CsvElementsLoader(Reader reader, Receiver receiver){
         this.reader = reader;
         this.receiver = receiver;
     }
+
+    /**
+     * load elements from file
+     * @throws IOException if something goes wrong with file
+     * @throws IncorrectElementFieldException if element field is incorrect
+     * @throws IncorrectKeyException if key is incorrect
+     */
     public void load() throws IOException, IncorrectElementFieldException, IncorrectKeyException {
         Map<String, StudyGroup> elements = new TreeMap<>();
         CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
@@ -73,5 +92,12 @@ public class CsvElementsLoader {
         if (!(StudyGroupValidator.validCollectionId(elements.values())))
             throw new IncorrectElementFieldException("id должны быть различны");
         receiver.putAll(elements);
+    }
+
+    /**
+     * close reader
+     */
+    public void close() throws IOException{
+        reader.close();
     }
 }

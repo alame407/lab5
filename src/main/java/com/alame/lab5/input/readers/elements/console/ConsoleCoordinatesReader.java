@@ -7,11 +7,24 @@ import com.alame.lab5.utility.parsers.CoordinatesParser;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
+/**
+ * class for reading coordinates from console
+ */
 public class ConsoleCoordinatesReader extends ConsoleReader {
     private final Printer printer = new ConsolePrinter();
+
+    /**
+     * read coordinates from console
+     * @return received coordinate
+     */
     public Coordinates readCoordinates(){
         return new Coordinates(readX(), readY());
     }
+
+    /**
+     * read x from console
+     * @return received x
+     */
     public Long readX(){
         printer.print("Введите координату x ");
         while(true){
@@ -25,6 +38,11 @@ public class ConsoleCoordinatesReader extends ConsoleReader {
             }
         }
     }
+
+    /**
+     * read y from console
+     * @return received y
+     */
     public float readY(){
         printer.print("Введите координату y ");
         while(true){

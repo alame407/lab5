@@ -8,9 +8,21 @@ import com.alame.lab5.input.readers.elements.StudyGroupReader;
 
 import java.io.IOException;
 
+/**
+ * class for reading studyGroup from file
+ */
 public class FileStudyGroupReader implements StudyGroupReader {
+    /**
+     * field that realise reading person
+     */
     private final FilePersonReader filePersonReader;
+    /**
+     * field that realise reading from file
+     */
     private final FileReader fileReader;
+    /**
+     * field that realise reading coordinates
+     */
     private final FileCoordinatesReader fileCoordinatesReader;
     public FileStudyGroupReader(FileReader fileReader) {
         this.fileReader = fileReader;
@@ -18,12 +30,21 @@ public class FileStudyGroupReader implements StudyGroupReader {
         fileCoordinatesReader = new FileCoordinatesReader(fileReader);
     }
 
+    /**
+     * read studyGroup from file
+     * @return received studyGroup
+     * @throws IncorrectElementFieldException if studyGroup is not valid
+     */
     @Override
     public StudyGroup readStudyGroup() throws IncorrectElementFieldException {
         return new StudyGroup(readName(), readCoordinates(), readStudentsCount(),
                 readExpelledStudent(), readFormOfEducation(), readSemester(), readPerson());
     }
-
+    /**
+     * read name from file
+     * @return received name
+     * @throws IncorrectElementFieldException if name is not valid
+     */
     @Override
     public String readName() throws IncorrectElementFieldException {
         try{
@@ -34,12 +55,20 @@ public class FileStudyGroupReader implements StudyGroupReader {
             throw new IncorrectElementFieldException(e.getMessage());
         }
     }
-
+    /**
+     * read coordinates from file
+     * @return received coordinates
+     * @throws IncorrectElementFieldException if coordinates is not valid
+     */
     @Override
     public Coordinates readCoordinates() throws IncorrectElementFieldException {
         return fileCoordinatesReader.readCoordinates();
     }
-
+    /**
+     * read studentsCount from file
+     * @return received studentsCount
+     * @throws IncorrectElementFieldException if studentsCount is not valid
+     */
     @Override
     public int readStudentsCount() throws IncorrectElementFieldException {
         try{
@@ -50,7 +79,11 @@ public class FileStudyGroupReader implements StudyGroupReader {
             throw new IncorrectElementFieldException(e.getMessage());
         }
     }
-
+    /**
+     * read expelledStudents from file
+     * @return received expelledStudents
+     * @throws IncorrectElementFieldException if expelledStudents is not valid
+     */
     @Override
     public long readExpelledStudent() throws IncorrectElementFieldException {
         try {
@@ -61,7 +94,11 @@ public class FileStudyGroupReader implements StudyGroupReader {
             throw new IncorrectElementFieldException(e.getMessage());
         }
     }
-
+    /**
+     * read formOfEducation from file
+     * @return received formOfEducation
+     * @throws IncorrectElementFieldException if formOfEducation is not valid
+     */
     @Override
     public FormOfEducation readFormOfEducation() throws IncorrectElementFieldException {
         try {
@@ -72,7 +109,11 @@ public class FileStudyGroupReader implements StudyGroupReader {
             throw new IncorrectElementFieldException(e.getMessage());
         }
     }
-
+    /**
+     * read semester from file
+     * @return received semester
+     * @throws IncorrectElementFieldException if semester is not valid
+     */
     @Override
     public Semester readSemester() throws IncorrectElementFieldException {
         try {
@@ -83,7 +124,11 @@ public class FileStudyGroupReader implements StudyGroupReader {
             throw new IncorrectElementFieldException(e.getMessage());
         }
     }
-
+    /**
+     * read person from file
+     * @return received person
+     * @throws IncorrectElementFieldException if person is not valid
+     */
     @Override
     public Person readPerson() throws IncorrectElementFieldException {
         return filePersonReader.readPerson();

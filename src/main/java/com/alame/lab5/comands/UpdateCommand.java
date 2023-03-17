@@ -1,14 +1,12 @@
 package com.alame.lab5.comands;
 
-import com.alame.lab5.App;
 import com.alame.lab5.elements.Receiver;
-import com.alame.lab5.elements.StudyGroup;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
 import com.alame.lab5.input.UserInput;
 import com.alame.lab5.input.readers.elements.StudyGroupReader;
 
-public class UpdateCommand extends AbstractCommand{
+public class UpdateCommand implements Command{
     private int id;
     private final Receiver receiver;
     private final UserInput userInput;
@@ -53,5 +51,10 @@ public class UpdateCommand extends AbstractCommand{
     @Override
     public String name() {
         return "update";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new UpdateCommand(receiver, userInput);
     }
 }

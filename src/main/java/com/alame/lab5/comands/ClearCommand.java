@@ -7,7 +7,7 @@ import com.alame.lab5.exceptions.IncorrectCommandParameterException;
  * Command for clear collection
  */
 
-public class ClearCommand extends AbstractCommand {
+public class ClearCommand implements Command{
     /**
      * field that realize collection clear
      */
@@ -39,6 +39,11 @@ public class ClearCommand extends AbstractCommand {
     @Override
     public String name() {
         return "clear";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new ClearCommand(receiver);
     }
 
 }

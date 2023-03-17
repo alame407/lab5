@@ -5,7 +5,7 @@ import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 import com.alame.lab5.utility.writers.ConsolePrinter;
 import com.alame.lab5.utility.writers.Printer;
 
-public class InfoCommand extends AbstractCommand{
+public class InfoCommand implements Command{
     private final Printer printer = new ConsolePrinter();
     private final Receiver receiver;
     public InfoCommand(Receiver receiver){
@@ -30,5 +30,10 @@ public class InfoCommand extends AbstractCommand{
     @Override
     public String name() {
         return "info";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new InfoCommand(receiver);
     }
 }

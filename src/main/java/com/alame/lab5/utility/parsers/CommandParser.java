@@ -8,7 +8,17 @@ import com.alame.lab5.exceptions.CommandNotFoundException;
 
 import java.util.Arrays;
 
+/**
+ * class for parsing command from string
+ */
 public class CommandParser {
+    /**
+     * parse command from string
+     * @param line string to parse
+     * @return command
+     * @throws CommandNotFoundException if command doesn't exist
+     * @throws IncorrectCommandParameterException if command parameters are not valid
+     */
     public static Command parseCommand(String line) throws CommandNotFoundException, IncorrectCommandParameterException{
         String[] arguments = line.split(" ");
         if (CommandMapper.getInstance().commandExist(arguments[0])){

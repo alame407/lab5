@@ -13,10 +13,19 @@ import java.nio.file.FileSystems;
 import java.util.Map;
 
 public class CsvElementsWriter {
+    /**
+     * headers of csv file
+     */
     private final static String[] HEADERS = { "key", "id", "name", "Coordinates x", "Coordinates y", "creationDate",
             "studentsCount", "expelledStudents", "formOfEducation", "semesterEnum", "groupAdmin name",
             "groupAdmin birthday", "groupAdmin eyeColor", "groupAdmin hairColor", "groupAdmin nationality"};
+    /**
+     * field for writing in file
+     */
     FileWriter fileWriter;
+    /**
+     * field for configuration csvPrinter
+     */
     CSVFormat csvFormat;
     public CsvElementsWriter() throws IOException {
         new File("."+FileSystems.getDefault().getSeparator() +"files").mkdirs();
@@ -28,6 +37,12 @@ public class CsvElementsWriter {
                 .setDelimiter(",")
                 .build();
     }
+
+    /**
+     * write collection in file
+     * @param studyGroupMap - collection
+     * @throws IOException if something goes wrong with file
+     */
     public void write(Map<String, StudyGroup> studyGroupMap) throws IOException{
         CSVPrinter printer = csvFormat.print(fileWriter);
         for(Map.Entry<String, StudyGroup> entry: studyGroupMap.entrySet()){

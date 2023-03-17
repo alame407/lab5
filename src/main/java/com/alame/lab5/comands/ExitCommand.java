@@ -2,7 +2,7 @@ package com.alame.lab5.comands;
 
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 
-public class ExitCommand extends AbstractCommand{
+public class ExitCommand implements Command{
     @Override
     public boolean execute() {
         System.exit(0);
@@ -22,5 +22,10 @@ public class ExitCommand extends AbstractCommand{
     @Override
     public String name() {
         return "exit";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new ExitCommand();
     }
 }

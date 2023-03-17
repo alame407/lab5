@@ -3,7 +3,7 @@ package com.alame.lab5.comands;
 import com.alame.lab5.elements.Receiver;
 import com.alame.lab5.exceptions.IncorrectCommandParameterException;
 
-public class RemoveLowerKeyCommand extends AbstractCommand{
+public class RemoveLowerKeyCommand implements Command{
     private final Receiver receiver;
     private String key;
     public RemoveLowerKeyCommand(Receiver receiver){
@@ -29,5 +29,10 @@ public class RemoveLowerKeyCommand extends AbstractCommand{
     @Override
     public String name() {
         return "remove_lower_key";
+    }
+
+    @Override
+    public Command newInstance() {
+        return new RemoveLowerKeyCommand(receiver);
     }
 }
