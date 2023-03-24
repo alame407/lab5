@@ -29,7 +29,7 @@ public class FileCommandReader implements CommandReader {
     @Override
     public Command readCommand() throws IncorrectCommandParameterException{
         try{
-            return CommandParser.parseCommand(fileReader.getNextLine()).newInstance();
+            return CommandParser.parseCommand(fileReader.getNextLine());
         } catch (IOException | CommandNotFoundException e) {
             throw new IncorrectCommandParameterException(e.getMessage());
         }

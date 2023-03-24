@@ -27,6 +27,7 @@ public class ReplaceIfLowerCommand implements Command{
     @Override
     public void setParameters(String[] parameters) throws IncorrectCommandParameterException {
         if (parameters.length!=1) throw new IncorrectCommandParameterException("Данная команда принимает 1 аргумент");
+        if (!receiver.keyExist(parameters[0])) throw new IncorrectCommandParameterException("Такого ключа не существует");
         this.key = parameters[0];
     }
 

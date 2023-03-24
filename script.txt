@@ -1,0 +1,4 @@
+show
+help
+aeeshdshfdj
+execute_script s2.txt

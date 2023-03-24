@@ -176,4 +176,7 @@ public class Receiver {
         }
         return false;
     }
+    public boolean keyExist(String key){
+        return studyGroupMap.containsKey(key);
+    }
 }

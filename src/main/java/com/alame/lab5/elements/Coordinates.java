@@ -4,8 +4,8 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class Coordinates implements Comparable<Coordinates>{
-    private Long x; //Поле не может быть null
-    private float y;
+    private final Long x; //Поле не может быть null
+    private final float y;
     public Coordinates(Long x, float y){
         this.x = x;
         this.y = y;

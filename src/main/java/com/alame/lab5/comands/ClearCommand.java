@@ -12,11 +12,6 @@ public class ClearCommand implements Command{
      * field that realize collection clear
      */
     private final Receiver receiver;
-
-    /**
-     * Constructs
-     * @param receiver
-     */
     public ClearCommand(Receiver receiver){
         this.receiver = receiver;
     }

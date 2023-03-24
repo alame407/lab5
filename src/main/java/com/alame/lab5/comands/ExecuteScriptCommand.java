@@ -28,6 +28,7 @@ public class ExecuteScriptCommand implements Command{
     }
     @Override
     public boolean execute() {
+        openFiles.add(fileReader.getFileName());
         StudyGroupReader oldStudyGroupReader = userInput.getStudyGroupReader() ;
         CommandReader oldCommandReader = userInput.getCommandReader();
         userInput.setCommandReader(commandReader);
@@ -37,15 +38,11 @@ public class ExecuteScriptCommand implements Command{
                 Command command = userInput.getCommandReader().readCommand();
                 boolean commandExecuteCorrectly = commandHandler.handle(command);
                 if (!commandExecuteCorrectly){
-                    printer.println("В файле " + fileReader.getFileName() + " ошибка в команде " + command.name()
-                            + " все команды до выполнены успешно");
-                    break;
+                    printer.println("В файле " + fileReader.getFileName() + " ошибка в команде " + command.name());
                 }
             }
             catch (IncorrectCommandParameterException e){
-                printer.println("В файле " + fileReader.getFileName() + " ошибка: " + e.getMessage() +
-                        " все команды до выполнены успешно");
-                break;
+                printer.println("В файле " + fileReader.getFileName() + " ошибка: " + e.getMessage());
             }
         }
 
@@ -74,7 +71,6 @@ public class ExecuteScriptCommand implements Command{
             fileReader = new FileReader(parameters[0]);
             studyGroupReader = new FileStudyGroupReader(fileReader);
             commandReader = new FileCommandReader(fileReader);
-            openFiles.add(fileReader.getFileName());
         } catch (IOException e) {
             throw new IncorrectCommandParameterException("Не удалось открыть указанный файл");
         }
