@@ -3,6 +3,9 @@ package com.alame.lab5.input.readers.elements;
 import com.alame.lab5.elements.*;
 import com.alame.lab5.exceptions.IncorrectElementFieldException;
 
+/**
+ * interface for all class that realise reading studyGroup
+ */
 public interface StudyGroupReader {
     /**
      * read StudyGroup

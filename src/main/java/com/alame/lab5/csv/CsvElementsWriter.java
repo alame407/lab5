@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.Map;
 
+/**
+ * class for writing collection in csv file
+ */
 public class CsvElementsWriter {
     /**
      * headers of csv file

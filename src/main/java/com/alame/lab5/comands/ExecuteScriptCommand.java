@@ -14,7 +14,13 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * command for execution commands in script
+ */
 public class ExecuteScriptCommand implements Command{
+    /**
+     * files open in all scripts
+     */
     private static final Set<String> openFiles = new HashSet<>();
     private FileReader fileReader;
     private StudyGroupReader studyGroupReader;
@@ -26,6 +32,11 @@ public class ExecuteScriptCommand implements Command{
         this.userInput = userInput;
         this.commandHandler = commandHandler;
     }
+
+    /**
+     * read script and execute commands in script
+     * @return true
+     */
     @Override
     public boolean execute() {
         openFiles.add(fileReader.getFileName());
@@ -58,6 +69,11 @@ public class ExecuteScriptCommand implements Command{
         return true;
     }
 
+    /**
+     * set filename
+     * @param parameters - all parameters of command
+     * @throws IncorrectCommandParameterException if file already open or can't be open
+     */
     @Override
     public void setParameters(String[] parameters) throws IncorrectCommandParameterException {
 
@@ -76,16 +92,26 @@ public class ExecuteScriptCommand implements Command{
         }
     }
 
+    /**
+     * @return command description
+     */
     @Override
     public String description() {
         return "execute_script file_name: считывает и исполняет скрипт из указанного файла.";
     }
 
+    /**
+     * @return command name
+     */
     @Override
     public String name() {
         return "execute_script";
     }
 
+    /**
+     * create new Instance of ExecuteScriptCommand
+     * @return new ExecuteScriptCommand with same userInput and commandHandler
+     */
     @Override
     public Command newInstance() {
         return new ExecuteScriptCommand(userInput, commandHandler);
